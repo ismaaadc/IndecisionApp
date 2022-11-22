@@ -1,3 +1,35 @@
+<script>
+export default {
+    data() {
+        return {
+            question: null,
+            answer: null,
+            imagen: null,
+            isValidQuestion: false
+        }
+    },
+    watch: {
+        question(value, oldValue) {
+            this.isValidQuestion = false;
+            if(!value.includes('?')) return;
+            //Realizar petición http
+            this.isValidQuestion = true;
+
+            this.getAnswer()
+
+        }
+    },
+    methods: {
+        async getAnswer(){
+            this.answer = "Pensando..."
+            const {answer, image} = await fetch('https://yesno.wtf/api').then(response => response.json() )
+            this.answer = answer === 'yes' ? 'Sí' : 'No';
+            this.imagen = image;
+        }
+    }
+}
+</script>
+ <!--El css soo será aplicado a este componente-->
 <style scoped>
 
     img, .bg-dark {
