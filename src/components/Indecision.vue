@@ -1,3 +1,18 @@
+<template lang="">
+    <img v-if="imagen" :src="imagen" alt="bg">
+    <div class="bg-dark"></div>
+    <div class="indecision-container">
+        <input 
+            type="text" 
+            placeholder="Hazme una pregunta" 
+            v-model="question" />
+        <p>Recuerda terminar con un signo de interrogación (?)</p>
+        <div v-if="isValidQuestion">
+            <h2>{{question}}</h2>
+            <h1>{{answer}}</h1>
+        </div>
+    </div>
+</template>
 <script>
 export default {
     data() {
